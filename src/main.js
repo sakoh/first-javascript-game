@@ -31,7 +31,5 @@ const config = {
   },
 };
 
-console.log('Initializing Phaser game...');
 const game = new Phaser.Game(config);
-console.log('Phaser game initialized:', game);
 

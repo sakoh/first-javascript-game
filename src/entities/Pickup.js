@@ -9,25 +9,10 @@ export default class Pickup extends Phaser.Physics.Arcade.Sprite {
     
     this.pickupType = type;
     
-    // Create visual representation
-    const graphics = scene.add.graphics();
-    
-    if (type === 'health') {
-      graphics.fillStyle(0x00ff00, 1);
-      graphics.fillRect(2, 6, 4, 8);
-      graphics.fillRect(0, 8, 8, 4);
-    } else if (type === 'ammo') {
-      graphics.fillStyle(0xffff00, 1);
-      graphics.fillRect(3, 2, 2, 12);
-      graphics.fillRect(1, 4, 6, 2);
-    }
-    
-    graphics.generateTexture(`pickup-${type}`, 8, 16);
-    graphics.destroy();
-    
+    // Use generated pickup sprite
     this.setTexture(`pickup-${type}`);
     this.setOrigin(0.5);
-    this.setSize(8, 8);
+    this.setSize(10, 10);
     
     // Add to pickups group
     const pickupsGroup = scene.registry.get('pickupsGroup');

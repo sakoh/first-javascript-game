@@ -126,9 +126,9 @@ export default class Boss extends Enemy {
       const angle = Phaser.Math.Angle.Between(this.x, this.y, this.player.x, this.player.y);
       const spreadAngle = angle + (i * 0.3);
       
-      const projectile = this.scene.physics.add.sprite(this.x, this.y, 'player-temp');
+      const projectile = this.scene.physics.add.sprite(this.x, this.y, 'projectile-bullet');
       projectile.setTint(0xff00ff);
-      projectile.setScale(0.8);
+      projectile.setScale(1.2);
       projectile.damage = this.damage;
       
       this.scene.physics.velocityFromRotation(spreadAngle, this.projectileSpeed, projectile.body.velocity);
@@ -151,9 +151,9 @@ export default class Boss extends Enemy {
     for (let i = 0; i < 8; i++) {
       const angle = (Math.PI * 2 / 8) * i;
       
-      const projectile = this.scene.physics.add.sprite(this.x, this.y, 'player-temp');
+      const projectile = this.scene.physics.add.sprite(this.x, this.y, 'projectile-bullet');
       projectile.setTint(0xff6600);
-      projectile.setScale(0.7);
+      projectile.setScale(1.0);
       projectile.damage = this.damage * 0.8;
       
       this.scene.physics.velocityFromRotation(angle, this.projectileSpeed, projectile.body.velocity);
@@ -183,9 +183,9 @@ export default class Boss extends Enemy {
       callback: () => {
         const angle = (projectileCount * 0.5);
         
-        const projectile = this.scene.physics.add.sprite(this.x, this.y, 'player-temp');
+        const projectile = this.scene.physics.add.sprite(this.x, this.y, 'projectile-bullet');
         projectile.setTint(0xff0000);
-        projectile.setScale(0.6);
+        projectile.setScale(0.9);
         projectile.damage = this.damage * 0.6;
         
         this.scene.physics.velocityFromRotation(angle, this.projectileSpeed, projectile.body.velocity);
@@ -218,10 +218,11 @@ export default class Boss extends Enemy {
     this.scene.cameras.main.flash(1000, 255, 255, 255);
     
     // Explosion particles
-    const particles = this.scene.add.particles(this.x, this.y, `enemy-${this.enemyType}`, {
+    const spriteName = `enemy-${this.enemyType.toLowerCase()}`;
+    const particles = this.scene.add.particles(this.x, this.y, spriteName, {
       speed: { min: 100, max: 300 },
       angle: { min: 0, max: 360 },
-      scale: { start: 2, end: 0 },
+      scale: { start: 1.5, end: 0 },
       lifespan: 1000,
       quantity: 30,
     });

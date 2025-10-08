@@ -15,14 +15,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     scene.add.existing(this);
     scene.physics.add.existing(this);
     
-    // Create visual representation
-    this.graphics = scene.add.graphics();
-    this.graphics.fillStyle(0x00ff00, 1);
-    this.graphics.fillRect(-8, -8, 16, 16);
-    this.graphics.generateTexture('player-temp', 16, 16);
-    this.graphics.destroy();
-    
-    this.setTexture('player-temp');
+    // Use generated pixel art sprite
+    this.setTexture('player-sprite');
     this.setOrigin(0.5);
     this.setCollideWorldBounds(true);
     this.setSize(14, 14);
@@ -85,7 +79,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     if (this.scene.input.gamepad) {
       this.scene.input.gamepad.once('connected', (pad) => {
         this.gamepad = pad;
-        console.log('Gamepad connected:', pad.id);
       });
     }
   }
@@ -262,10 +255,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.visible = false;
     
     // Create death effect
-    const particles = this.scene.add.particles(this.x, this.y, 'player-temp', {
+    const particles = this.scene.add.particles(this.x, this.y, 'player-sprite', {
       speed: { min: 100, max: 200 },
       angle: { min: 0, max: 360 },
-      scale: { start: 1, end: 0 },
+      scale: { start: 0.5, end: 0 },
       lifespan: 500,
       quantity: 20,
     });

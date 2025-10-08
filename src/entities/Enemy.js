@@ -8,16 +8,19 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
     scene.add.existing(this);
     scene.physics.add.existing(this);
     
-    // Create visual representation
-    const graphics = scene.add.graphics();
-    graphics.fillStyle(config.color || 0xff0000, 1);
-    graphics.fillCircle(8, 8, 8);
-    graphics.generateTexture(`enemy-${config.name}`, 16, 16);
-    graphics.destroy();
-    
-    this.setTexture(`enemy-${config.name}`);
+    // Use generated pixel art sprite
+    const spriteName = `enemy-${config.name.toLowerCase()}`;
+    this.setTexture(spriteName);
     this.setOrigin(0.5);
-    this.setSize(14, 14);
+    
+    // Different sizes for different enemy types
+    if (config.name === 'tank') {
+      this.setSize(18, 18);
+    } else if (config.name === 'spawner') {
+      this.setSize(16, 16);
+    } else {
+      this.setSize(14, 14);
+    }
     
     // Stats
     this.enemyType = config.name;
@@ -90,9 +93,9 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
   shootAtPlayer() {
     const angle = Phaser.Math.Angle.Between(this.x, this.y, this.player.x, this.player.y);
     
-    const projectile = this.scene.physics.add.sprite(this.x, this.y, 'player-temp');
+    const projectile = this.scene.physics.add.sprite(this.x, this.y, 'projectile-bullet');
     projectile.setTint(0xff0000);
-    projectile.setScale(0.5);
+    projectile.setScale(0.8);
     projectile.damage = this.damage;
     
     this.scene.physics.velocityFromRotation(angle, this.projectileSpeed, projectile.body.velocity);
@@ -187,10 +190,11 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
     }
     
     // Death effect
-    const particles = this.scene.add.particles(this.x, this.y, `enemy-${this.enemyType}`, {
+    const spriteName = `enemy-${this.enemyType.toLowerCase()}`;
+    const particles = this.scene.add.particles(this.x, this.y, spriteName, {
       speed: { min: 50, max: 150 },
       angle: { min: 0, max: 360 },
-      scale: { start: 1, end: 0 },
+      scale: { start: 0.5, end: 0 },
       lifespan: 300,
       quantity: 8,
     });

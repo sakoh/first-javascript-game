@@ -127,12 +127,22 @@ first-javascript-game/
 │       └── PoolManager.js
 ```
 
+## Visual Style
+
+The game features **procedurally generated pixel art** sprites:
+- Unique pixel art designs for player and all enemy types
+- Distinct visual styles for each weapon and projectile
+- Animated particle effects
+- Hand-crafted pickup icons (health hearts and ammo boxes)
+
+All graphics are generated programmatically using the Canvas API, ensuring consistent style and easy modifications.
+
 ## Technologies Used
 
 - **Phaser 3**: Game framework
 - **Vite**: Build tool and dev server
 - **JavaScript ES6+**: Modern JavaScript features
-- **HTML5 Canvas**: Rendering
+- **HTML5 Canvas**: Rendering and pixel art generation
 - **LocalStorage**: Save data persistence
 
 ## Game Design

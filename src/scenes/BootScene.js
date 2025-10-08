@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import SpriteGenerator from '../utils/SpriteGenerator.js';
 
 export default class BootScene extends Phaser.Scene {
   constructor() {
@@ -57,16 +58,10 @@ export default class BootScene extends Phaser.Scene {
   }
 
   create() {
-    console.log('BootScene: Creating textures...');
+    // Generate all pixel art sprites
+    const spriteGenerator = new SpriteGenerator(this);
+    spriteGenerator.generateAllSprites();
     
-    // Create particle texture
-    const particleGraphics = this.add.graphics();
-    particleGraphics.fillStyle(0xffffff, 1);
-    particleGraphics.fillCircle(4, 4, 4);
-    particleGraphics.generateTexture('particle', 8, 8);
-    particleGraphics.destroy();
-    
-    console.log('BootScene: Starting MenuScene...');
     this.scene.start('MenuScene');
   }
 }

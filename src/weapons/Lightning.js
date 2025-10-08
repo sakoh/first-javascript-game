@@ -14,7 +14,7 @@ export default class Lightning extends Weapon {
       lastProjectile.setTint(0x00ffff);
       
       // Add electric effect
-      const particles = this.scene.add.particles(lastProjectile.x, lastProjectile.y, 'player-temp', {
+      const particles = this.scene.add.particles(lastProjectile.x, lastProjectile.y, 'particle', {
         follow: lastProjectile,
         scale: { start: 0.2, end: 0 },
         alpha: { start: 1, end: 0 },

@@ -66,10 +66,9 @@ export default class Weapon {
     
     const angle = this.player.rotation + spreadAngle;
     
-    // Create projectile
-    const projectile = this.scene.physics.add.sprite(this.player.x, this.player.y, 'player-temp');
-    projectile.setScale(0.5);
-    projectile.setTint(0xffff00);
+    // Create projectile with proper sprite
+    const projectile = this.scene.physics.add.sprite(this.player.x, this.player.y, 'projectile-bullet');
+    projectile.setScale(1.0);
     
     // Calculate damage with crit
     let damage = this.damage * this.player.damageMultiplier;

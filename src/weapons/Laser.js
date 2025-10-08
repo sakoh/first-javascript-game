@@ -14,8 +14,8 @@ export default class Laser extends Weapon {
     const lastProjectile = this.scene.registry.get('projectilesGroup').getLast(true);
     
     if (lastProjectile) {
-      lastProjectile.setTint(0x00ffff);
-      lastProjectile.setScale(0.3, 1);
+      lastProjectile.setTexture('projectile-laser');
+      lastProjectile.setScale(1.0);
     }
   }
 }

@@ -7,13 +7,11 @@ export default class MenuScene extends Phaser.Scene {
   }
 
   create() {
-    console.log('MenuScene: Creating menu...');
     const width = this.cameras.main.width;
     const height = this.cameras.main.height;
     
     // Initialize progression manager
     this.progressionManager = new ProgressionManager();
-    console.log('MenuScene: Menu created successfully');
     this.registry.set('progressionManager', this.progressionManager);
     
     // Title

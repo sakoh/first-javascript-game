@@ -12,11 +12,11 @@ export default class Rocket extends Weapon {
     // Make rocket look different
     const lastProjectile = this.scene.registry.get('projectilesGroup').getLast(true);
     if (lastProjectile) {
-      lastProjectile.setTint(0xff8800);
-      lastProjectile.setScale(1);
+      lastProjectile.setTexture('projectile-rocket');
+      lastProjectile.setScale(1.5);
       
       // Add smoke trail
-      const particles = this.scene.add.particles(lastProjectile.x, lastProjectile.y, 'player-temp', {
+      const particles = this.scene.add.particles(lastProjectile.x, lastProjectile.y, 'particle', {
         follow: lastProjectile,
         scale: { start: 0.3, end: 0 },
         alpha: { start: 0.5, end: 0 },
